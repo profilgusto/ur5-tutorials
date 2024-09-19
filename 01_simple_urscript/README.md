@@ -34,5 +34,5 @@ Depois de instalar o URCap na pendant, vá em `Program Robot > Installation` e p
 
 Para habilitar o URCap, crie um novo programa `Empty program`, e adicione o node do URCap no código:
 
-![IMG_8099 Large.jpeg](:/1db48eb044bc4489b091ae8f090fd538)
+![IMG_8099 Large.jpeg](./imgs/1db48eb044bc4489b091ae8f090fd538.jpeg)
 
