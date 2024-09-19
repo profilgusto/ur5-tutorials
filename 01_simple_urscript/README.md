@@ -36,3 +36,17 @@ Para habilitar o URCap, crie um novo programa `Empty program`, e adicione o node
 
 ![IMG_8099 Large.jpeg](./imgs/1db48eb044bc4489b091ae8f090fd538.jpeg)
 
+Ainda não é necessário executar o programa (se tentar, verá que uma mensagem de erro aparece na pendant).
+
+
+## Executando o servidor no computador
+
+Agora iremos executar o servidor no computador. O servidor em `simple_external_control_server.py` irá se conectar ao robô através do URCap e enviar para execução cíclica o URScript `hello_world.script`.
+
+- **NOTA:** Para aprender a programar em URScript, veja [este manual online](https://myur.universal-robots.com/manuals/content/SW_3_15/Documentation%20Menu/Script%20Manual) ([versão PDF](https://myurhelpresources.blob.core.windows.net/resources/PDF/SW_3_15/scriptmanualG3.pdf)).
+
+Para tal, apenas execute em sua máquina o comando:
+```
+python3 simple_external_control_server.py hello_world.script
+```
+
