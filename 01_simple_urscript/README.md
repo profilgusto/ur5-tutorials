@@ -12,31 +12,41 @@ Referências:
 
 ## Conectando ao robô
 
-A conexão do computador ao robô é feito via Ethernet e TCP/IP.
+- [Referência](https://myur.universal-robots.com/manuals/content/SW_3_15/Documentation%20Menu/Script%20Manual/Connecting%20to%20URControl)
 
-- [Manual](https://myur.universal-robots.com/manuals/content/SW_3_15/Documentation%20Menu/Script%20Manual/Connecting%20to%20URControl)
-- **hostname:** ur-xx (xx de acordo com o modelo)
-- **IP:** Pode-se encontrá-lo na seção about da pendant
+A conexão do computador ao robô é feito via Ethernet e TCP/IP. 
 
-Conecte seu computador à mesma rede que o robô, com um IP na mesma subrede.
+1. Primeiro, descubra o IP configurado no robô. Para isto, vá na pendant em `About`, onde irá aparece o IP atualmente configurado. 
 
-Tente pingar o robô para ver se a conexão está estabelecida.
+- **NOTA:** É possível alterar o IP do robô indo em `Setup Robot > Network`.
+
+2. Conecte a controladora via RJ-45 diretamente ao seu computador. É possível também conectá-lo a um switch.
+
+3. Após criar um meio físico entre a controladora do UR e seu computador (cabo ethernet direto, Wi-Fi pelo switch, etc.), configure o IP da sua máquina para estar na mesma subrede (e.g., robô em `192.168.0.2` e computador em `192.168.0.3`).
+
+4. Tente pingar o robô pelo terminal para ver se a conexão está corretamente estabelecida. 
+
 
 ## URCap
 
 Para controlar o robô externamente, é necessário habilitar o URCap na pendant.
 
-Sigas as instruções [deste link](https://github.com/UniversalRobots/Universal_Robots_ROS_Driver/blob/master/ur_robot_driver/doc/install_urcap_cb3.md) para instar o URCap em um braço da série CB3. 
+1. Sigas as instruções [deste link](https://github.com/UniversalRobots/Universal_Robots_ROS_Driver/blob/master/ur_robot_driver/doc/install_urcap_cb3.md) para instar o URCap na pendant de um braço da série CB3. 
 
-Depois de instalar o URCap na pendant, vá em `Program Robot > Installation` e procure por `External Control` na aba lateral. Deve-se inserir em `Host IP` o IP do computador que vai enviar os URScripts (ou rodar os nós do ROS). Note também que há como configurar a porta em que o programa deve procurar o URCap.
+2. Depois de instalar o URCap na pendant, vá em `Program Robot > Installation` e procure por `External Control` na aba lateral. Deve-se inserir em `Host IP` o IP do computador que vai enviar os URScripts (ou rodar os nós do ROS). Note também que há como configurar a porta em que o URCap deve procurar pelo external control no seu computador.
 
-- Porta atual: `50002`.
+- **NOTA:** Esta porta pode ser confirmada em `simple_external_control_server.py` na linha:
+```
+parser.add_argument("-p", "--port", type=int,
+                        default=50002, help="Port number to use")
+```
+Neste exemplo, a porta utilizada é a `50002`.
 
-Para habilitar o URCap, crie um novo programa `Empty program`, e adicione o node do URCap no código:
+3. Para habilitar o URCap, crie um novo programa `Empty program`, e adicione o node do URCap no código:
 
-![IMG_8099 Large.jpeg](./imgs/1db48eb044bc4489b091ae8f090fd538.jpeg)
+![img](./imgs/01.jpeg)
 
-Ainda não é necessário executar o programa (se tentar, verá que uma mensagem de erro aparece na pendant).
+- **NOTA:** Ainda não é necessário executar o programa (se tentar, verá que uma mensagem de erro aparece na pendant).
 
 
 ## Executando o servidor no computador
@@ -45,8 +55,17 @@ Agora iremos executar o servidor no computador. O servidor em `simple_external_c
 
 - **NOTA:** Para aprender a programar em URScript, veja [este manual online](https://myur.universal-robots.com/manuals/content/SW_3_15/Documentation%20Menu/Script%20Manual) ([versão PDF](https://myurhelpresources.blob.core.windows.net/resources/PDF/SW_3_15/scriptmanualG3.pdf)).
 
-Para tal, apenas execute em sua máquina o comando:
+1. Para tal, apenas execute em sua máquina o comando:
 ```
 python3 simple_external_control_server.py hello_world.script
 ```
+
+2. Na pendant, dê `play` no programa contendo o URCap que você criou na etapa anterior.
+
+![img](./imgs/02.jpeg)
+
+
+Pronto! Se tudo correu, o código `hello_world.script` foi enviado para a pendant e neste momento está em execução cíclica no robô. Para verificar, vá na aba `Log` e clique no símbolo de informação. Você deve ser capaz de visualizar várias mensagens sendo enviadas ao log da pendant.
+
+![img](./imgs/03.jpeg)
 
