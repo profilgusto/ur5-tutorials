@@ -1,8 +1,8 @@
-# Teste de comunicação com o braço
+# TUTORIAL: Teste de comunicação com o braço
 
-Neste tutorial você irá aprender como descarregar um código URScript no manipulador da UR.
+Neste tutorial você irá aprender como descarregar e executar um código URScript escrito computador no manipulador da UR. O tutorial foi realizado em um UR-5 CB3.
 
-Referências:
+### Referências:
 - [Simple External Control Server example](https://github.com/UniversalRobots/Universal_Robots_ExternalControl_URCap/tree/master/examples/simple_external_control_server)
 - [Installing a URCap on a CB3 robot](https://github.com/UniversalRobots/Universal_Robots_ROS_Driver/blob/master/ur_robot_driver/doc/install_urcap_cb3.md)
 
@@ -10,7 +10,7 @@ Referências:
 ***
 # Passo a passo
 
-## Conectando ao robô
+## Conectando o robô ao computador pessoal
 
 - [Referência](https://myur.universal-robots.com/manuals/content/SW_3_15/Documentation%20Menu/Script%20Manual/Connecting%20to%20URControl)
 
@@ -36,7 +36,7 @@ Para controlar o robô externamente, é necessário habilitar o URCap na pendant
 2. Depois de instalar o URCap na pendant, vá em `Program Robot > Installation` e procure por `External Control` na aba lateral. Deve-se inserir em `Host IP` o IP do computador que vai enviar os URScripts (ou rodar os nós do ROS). Note também que há como configurar a porta em que o URCap deve procurar pelo external control no seu computador.
 
 - **NOTA:** Esta porta pode ser confirmada em `simple_external_control_server.py` na linha:
-```
+```python
 parser.add_argument("-p", "--port", type=int,
                         default=50002, help="Port number to use")
 ```
@@ -53,7 +53,7 @@ Neste exemplo, a porta utilizada é a `50002`.
 
 Agora iremos executar o servidor no computador. O servidor em `simple_external_control_server.py` irá se conectar ao robô através do URCap e enviar para execução cíclica o URScript `hello_world.script`.
 
-- **NOTA:** Para aprender a programar em URScript, veja [este manual online](https://myur.universal-robots.com/manuals/content/SW_3_15/Documentation%20Menu/Script%20Manual) ([versão PDF](https://myurhelpresources.blob.core.windows.net/resources/PDF/SW_3_15/scriptmanualG3.pdf)).
+- **NOTA:** Para aprender a programar em URScript, estude [este manual online](https://myur.universal-robots.com/manuals/content/SW_3_15/Documentation%20Menu/Script%20Manual) ([versão PDF](https://myurhelpresources.blob.core.windows.net/resources/PDF/SW_3_15/scriptmanualG3.pdf)).
 
 1. Para tal, apenas execute em sua máquina o comando:
 ```
@@ -65,7 +65,9 @@ python3 simple_external_control_server.py hello_world.script
 ![img](./imgs/02.jpeg)
 
 
-Pronto! Se tudo correu, o código `hello_world.script` foi enviado para a pendant e neste momento está em execução cíclica no robô. Para verificar, vá na aba `Log` e clique no símbolo de informação. Você deve ser capaz de visualizar várias mensagens sendo enviadas ao log da pendant.
+**Pronto!** 🎉🎊👽
+
+Se tudo correu, o código `hello_world.script` foi enviado para a pendant e neste momento está em execução cíclica no robô. Para verificar, vá na aba `Log` e clique no símbolo de informação. Você deve ser capaz de visualizar várias mensagens sendo enviadas ao log da pendant.
 
 ![img](./imgs/03.jpeg)
 
