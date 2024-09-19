@@ -1,0 +1,15 @@
+def test_func():
+  textmsg("HELLO FILIPEEE")
+  sleep(1)
+  textmsg("HELLO RENATOOO")
+  sleep(1)
+  textmsg("HELLO MARIOOOO")
+  sleep(1)
+  textmsg("HELLO BIDASHHHH")
+end
+
+# NODE_CONTROL_LOOP_BEGINS
+
+test_func()
+
+# NODE_CONTROL_LOOP_ENDS
